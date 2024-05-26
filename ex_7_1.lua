@@ -1,4 +1,4 @@
--- Sort the file line by line and print it
+-- Sort the stream (file or stdin) by line and print it to stream (stdout or file)
 ---@param input file*
 ---@param output file*
 function sort_stream(input, output)
@@ -16,25 +16,21 @@ function sort_stream(input, output)
     end
 end
 
-function main()
-    local input = io.stdin
-    local output = io.stdout
-    if arg[1] then
-        input = io.open(arg[1], 'r')
-        if not input then
-            error('Cannot open input file: ' .. arg[1])
-        end
+local input = io.stdin
+local output = io.stdout
+if arg[1] then
+    input = io.open(arg[1], 'r')
+    if not input then
+        error('Cannot open input file: ' .. arg[1])
     end
-    if arg[2] then
-        output = io.open(arg[2], 'w')
-        if not output then
-            error('Cannot open input file: ' .. arg[1])
-        end
-    end
-    sort_stream(input, output)
-
-    if input ~= io.stdin then input:close() end
-    if output ~= io.stdout then output:close() end
 end
+if arg[2] then
+    output = io.open(arg[2], 'w')
+    if not output then
+        error('Cannot open input file: ' .. arg[1])
+    end
+end
+sort_stream(input, output)
 
-main()
+if input ~= io.stdin then input:close() end
+if output ~= io.stdout then output:close() end
