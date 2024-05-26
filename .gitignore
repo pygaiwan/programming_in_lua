@@ -1,1 +1,3 @@
 examples.lua
+*.csv
+*.txt
