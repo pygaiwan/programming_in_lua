@@ -1,5 +1,6 @@
 
 --- Read the last n lines of a file without traversing the whole file
+--- Union of exercise 7.4 and 7.5
 ---@param fd file*
 ---@param n integer 'number of lines to return'
 ---@param position integer 'end of file'
