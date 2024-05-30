@@ -26,7 +26,6 @@ function list_files(dirname)
 end
 
 
-
 if not arg[1] then
     error('Operation has to be provided. Available commands are "create", "remove", "list"')
 end
