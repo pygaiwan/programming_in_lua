@@ -25,6 +25,8 @@ function list_files(dirname)
     if res then print(res:read("a")) else error("Something went wrong with the list_files function.") end
 end
 
+-- This is for exercise 7.7, showing change directory is not working as expected.
+---@param dirname string
 function change_dir(dirname)
     print('Current path before `cd` is: ')
     os.execute('pwd')
@@ -60,5 +62,3 @@ elseif arg[1] == 'changedir' then
 else
     error('available commands are "create", "remove", "list"')    
 end
-
-
