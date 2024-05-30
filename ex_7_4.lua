@@ -30,8 +30,8 @@ function main(lines)
         file:seek('set')
     end
 
-    local contet = file:read('a')
-    print(contet)
+    local content = file:read('a')
+    print(content)
     file:close()
 end
 

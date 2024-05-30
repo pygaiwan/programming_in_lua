@@ -4,7 +4,7 @@
 function create_dir(dirname)
     local success, _, signal = os.execute(string.format('mkdir %s', dirname))
     if success then return success else
-        error(string.format('Something went wrong with the create_dir funciton. Error code %d', signal))
+        error(string.format('Something went wrong with the create_dir function. Error code %d', signal))
     end
 end
 
@@ -14,7 +14,7 @@ end
 function remove_dir(dirname)
     local success, _, signal = os.execute(string.format('rm -r %s', dirname))
     if success then return success else
-        error(string.format('Something went wrong with the remove_dir§ funciton. Error code %d', signal))
+        error(string.format('Something went wrong with the remove_dir§ function. Error code %d', signal))
     end
 end
 
@@ -22,7 +22,7 @@ end
 ---@param dirname string
 function list_files(dirname)
     local res = io.popen(string.format("ls -l %s", dirname), 'r')
-    if res then print(res:read("a")) else error("Something went wrong with the list_files funciton.") end
+    if res then print(res:read("a")) else error("Something went wrong with the list_files function.") end
 end
 
 function change_dir(dirname)
