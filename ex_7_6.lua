@@ -25,7 +25,26 @@ function list_files(dirname)
     if res then print(res:read("a")) else error("Something went wrong with the list_files funciton.") end
 end
 
+function change_dir(dirname)
+    print('Current path before `cd` is: ')
+    os.execute('pwd')
+    
+    local res = os.execute(string.format('cd %s', dirname))
+    if not res then error('Error executing change_dir') end
 
+    print(string.format('\nChange dir finished with %s however the current path is', res))
+    os.execute('pwd')
+    print('\nYou cant change path since Lua create a subshell when executing the command, not taking effect on the next commands.')
+    print('The same can be seen when creating env variables using the os.execute functionality:\n')
+
+    local export_res = os.execute('export EXAMPLE=1')
+    print('Executing `export EXAMPLE=1`. Finished with status ', export_res)
+
+    local echo = io.popen('echo ${EXAMPLE}', 'r')
+    
+    print('Executing `echo ${EXAMPLE}`, expecting 1, got: ', echo:read('a'))
+    
+end
 if not arg[1] then
     error('Operation has to be provided. Available commands are "create", "remove", "list"')
 end
@@ -36,6 +55,8 @@ elseif arg[1] == 'remove' then
     remove_dir(arg[2])
 elseif arg[1] == 'list' then
     list_files(arg[2])
+elseif arg[1] == 'changedir' then
+    change_dir(arg[2])
 else
     error('available commands are "create", "remove", "list"')    
 end
