@@ -6,7 +6,7 @@ function split (s, delimiter)
     local count, i, j = 0, 0
     local t = {}
     while i do
-        i, j  = s:find(string.format('[^%s]+', delimiter), i)
+        i, j  = s:find('[^'..delimiter..']+', i)
         if i then 
             count = count + 1
             t[count] = s:sub(i, j)
