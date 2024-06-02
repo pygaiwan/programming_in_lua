@@ -3,13 +3,12 @@
 ---@param delimiter string
 ---@return table
 function split (s, delimiter)
-    local count, i, j = 0, 0
+    local i, j = 0, 0
     local t = {}
     while i do
         i, j  = s:find('[^'..delimiter..']+', i)
         if i then 
-            count = count + 1
-            t[count] = s:sub(i, j)
+            table.insert(t, s:sub(i, j))
             i = j + 1
         end
     end
