@@ -1,6 +1,6 @@
 ---@param x table
 ---@return table "Shuffled table - implemented with Fisher-Yates Shuffle Algorithm."
-function shuffle (x)
+function shuffle(x)
     math.randomseed(os.time())
 
     for i = #x, 2, -1 do

@@ -13,12 +13,7 @@ end
 
 -- Write data to stdout
 ---@param data table
-function write_data(data)
-    for i in pairs(data) do
-        io.write(data[i])
-    end
-end
-
+function write_data(data) for i in pairs(data) do io.write(data[i]) end end
 
 -- Copy tmpfile to stdout in byte chunks specified by size
 ---@param tempfile file*
@@ -32,7 +27,7 @@ function _read_byte_chunk(tempfile, size)
         if not content then break end
         data[count] = content
         count = count + 1
-    end 
+    end
     return data
 end
 
@@ -51,7 +46,7 @@ function line_by_line(tempfile)
     local count = 1
     for line in tempfile:lines("l") do
         data[count] = line .. '\n'
-        count = count + 1        
+        count = count + 1
     end
     write_data(data)
     tempfile:seek("set")
@@ -60,7 +55,7 @@ end
 -- Copy tmpfile to stdout in chunks of 8kB
 ---@param tempfile file*
 function chunks(tempfile)
-    local data = _read_byte_chunk(tempfile, 2^13)
+    local data = _read_byte_chunk(tempfile, 2 ^ 13)
     write_data(data)
     tempfile:seek("set")
 end

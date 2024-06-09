@@ -4,9 +4,7 @@
 ---@return integer
 function polinomial_value(polinomial, x)
     local res = 0
-    for exp, coeff in ipairs(polinomial) do
-        res = res + coeff * (x ^ (exp-1))
-    end
+    for exp, coeff in ipairs(polinomial) do res = res + coeff * (x ^ (exp - 1)) end
     return res
 end
 

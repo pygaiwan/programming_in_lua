@@ -12,9 +12,7 @@ function sort_stream(input, output)
 
     table.sort(t)
 
-    for i = 1, count do
-        output:write(t[i] .. '\n')
-    end
+    for i = 1, count do output:write(t[i] .. '\n') end
 end
 
 ---@param output file*
@@ -23,32 +21,28 @@ function is_empty(output)
     local current = output:seek()
     local size = output:seek("end")
     output:seek("set", current)
-    if size > 0 then return true else return false end
+    if size > 0 then
+        return true
+    else
+        return false
+    end
 end
-
 
 local input = io.stdin
 local output = io.stdout
 if arg[1] then
     input = io.open(arg[1], 'r')
-    if not input then
-        error('Cannot open input file: ' .. arg[1])
-    end
-    
+    if not input then error('Cannot open input file: ' .. arg[1]) end
+
 end
 if arg[2] then
     output = io.open(arg[2], 'w')
-    if not output then
-        error('Cannot open input file: ' .. arg[1])
-    end
+    if not output then error('Cannot open input file: ' .. arg[1]) end
     if not is_empty(output) then
         io.write('Output file is not empty, overwrite? [y/n]:  ')
         local answer = io.read()
-        if answer ~= 'y' then
-            output = io.stdout
-        end
+        if answer ~= 'y' then output = io.stdout end
     end
-
 
 end
 sort_stream(input, output)

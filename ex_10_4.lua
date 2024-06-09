@@ -1,4 +1,9 @@
-function reps(x) return function() x = x + 500000; return x end end
+function reps(x)
+    return function()
+        x = x + 500000;
+        return x
+    end
+end
 
 function old_trim(s) return s:gsub("^%s+(.-)%s+$", "%1") end
 function new_trim(s) return s:gsub("^%s+", ""):gsub("%s+$", "") end
@@ -20,7 +25,7 @@ end
 
 local x = reps(1000000)
 print('\t\tOLD TRIM:')
-for _=0, 5 do
+for _ = 0, 5 do
     local t0 = os.clock()
     local val = x()
     old_trim(('    i have made a trim function   '):rep(val, '\n'))
@@ -29,7 +34,7 @@ end
 
 local x = reps(1000000)
 print('\n\t\tNEW TRIM:')
-for _=0, 5 do
+for _ = 0, 5 do
     local t0 = os.clock()
     local val = x()
     new_trim(('    i have made a trim function   '):rep(val, '\n'))
@@ -38,7 +43,7 @@ end
 
 local x = reps(1000000)
 print('\n\t\tLINEAR TRIM:')
-for _=0, 5 do
+for _ = 0, 5 do
     local t0 = os.clock()
     local val = x()
     linear_trim(('    i have made a trim function   '):rep(val, '\n'))

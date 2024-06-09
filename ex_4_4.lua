@@ -3,7 +3,7 @@
 ---@param position number
 ---@param to_add string
 ---@return string
-function insert_utf8 (start_string, position, to_add)
+function insert_utf8(start_string, position, to_add)
     position = tonumber(position)
     if position > start_string:len() then
         print('Position is greater than len of the first string. Decreasing it\n')
@@ -15,7 +15,7 @@ function insert_utf8 (start_string, position, to_add)
 
     bytes_position = utf8.offset(start_string, position)
 
-    start_part = start_string:sub(1, bytes_position -1)
+    start_part = start_string:sub(1, bytes_position - 1)
     print('start_part', start_part)
     end_part = start_string:sub(bytes_position)
     print('end_part', end_part)

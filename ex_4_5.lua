@@ -6,7 +6,7 @@ function remove(initial_string, position, length)
     position = tonumber(position)
     length = tonumber(length)
 
-    start_string = initial_string:sub(1, position-1)
+    start_string = initial_string:sub(1, position - 1)
     end_string = initial_string:sub(position + length, -1)
 
     return start_string .. end_string

@@ -9,7 +9,7 @@ function is_valid_sequence(t)
         end
         max_idx = math.max(max_idx, idx)
     end
-    return max_idx == #t 
+    return max_idx == #t
 end
 
 print(is_valid_sequence({1, 2, 3.5, 4, 's', 7}))

@@ -11,24 +11,18 @@ function sort_stream(input, output)
 
     table.sort(t)
 
-    for i = 1, count do
-        output:write(t[i] .. '\n')
-    end
+    for i = 1, count do output:write(t[i] .. '\n') end
 end
 
 local input = io.stdin
 local output = io.stdout
 if arg[1] then
     input = io.open(arg[1], 'r')
-    if not input then
-        error('Cannot open input file: ' .. arg[1])
-    end
+    if not input then error('Cannot open input file: ' .. arg[1]) end
 end
 if arg[2] then
     output = io.open(arg[2], 'w')
-    if not output then
-        error('Cannot open input file: ' .. arg[1])
-    end
+    if not output then error('Cannot open input file: ' .. arg[1]) end
 end
 sort_stream(input, output)
 

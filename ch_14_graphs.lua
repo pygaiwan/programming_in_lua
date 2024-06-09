@@ -1,7 +1,7 @@
 local function name2node(graph, name)
     local node = graph[name]
     if not node then
-        node = { name = name, adj = {} }
+        node = {name = name, adj = {}}
         graph[name] = node
     end
     return node
@@ -19,18 +19,14 @@ function read_graph()
     return graph
 end
 
-function find_path (curr, to, path, visited)
+function find_path(curr, to, path, visited)
     path = path or {}
     visited = visited or {}
-    if visited[curr] then
-        return nil
-    end
+    if visited[curr] then return nil end
 
     visited[curr] = true
     path[#path + 1] = curr
-    if curr == to then
-        return path
-    end
+    if curr == to then return path end
 
     for node in pairs(curr.adj) do
         local p = find_path(node, to, path, visited)
@@ -39,18 +35,13 @@ function find_path (curr, to, path, visited)
     table.remove(path)
 end
 
-
 graph = read_graph()
 
 for value in pairs(graph) do
     io.write(graph[value].name .. ' -->\n')
-    for a in pairs(graph[value].adj) do
-        io.write('\t' .. a.name .. '\n')
-    end
+    for a in pairs(graph[value].adj) do io.write('\t' .. a.name .. '\n') end
     io.write('\n')
 end
 
 path = find_path(graph['g1'], graph['g5'])
-for i = 1, #path do
-    print(path[i].name)
-end
+for i = 1, #path do print(path[i].name) end

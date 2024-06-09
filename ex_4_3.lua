@@ -3,7 +3,7 @@
 ---@param position number
 ---@param to_add string
 ---@return string
-function insert (start_string, position, to_add)
+function insert(start_string, position, to_add)
     position = tonumber(position)
     if position > start_string:len() then
         print('Position is greater than len of the first string. Decreasing it\n')
@@ -13,7 +13,7 @@ function insert (start_string, position, to_add)
         position = 1
     end
 
-    start_part = start_string:sub(1, position-1)
+    start_part = start_string:sub(1, position - 1)
     end_part = start_string:sub(position)
     return start_part .. to_add .. end_part
 end

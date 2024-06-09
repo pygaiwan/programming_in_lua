@@ -5,9 +5,7 @@ function read_exclusions()
     f = io.open('exclusions.txt', 'r')
     if not f then error('cannot read file') end
 
-    for line in f:lines() do
-        exclude_words[line] = true
-    end
+    for line in f:lines() do exclude_words[line] = true end
     f:close()
     return exclude_words
 end
@@ -21,10 +19,7 @@ for line in io.lines() do
 end
 
 local words = {}
-for w in pairs(counter) do
-    words[#words + 1] = w
-end
-
+for w in pairs(counter) do words[#words + 1] = w end
 
 table.sort(words, function(w1, w2)
     return counter[w1] > counter[w2] or counter[w1] == counter[w2] and w1 < w2
@@ -32,6 +27,4 @@ end)
 
 local n = math.min(tonumber(arg[1]) or math.huge, #words)
 
-for i = 1, n do
-    io.write(words[i], '\t', counter[words[i]], '\n')
-end
+for i = 1, n do io.write(words[i], '\t', counter[words[i]], '\n') end

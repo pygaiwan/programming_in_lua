@@ -1,9 +1,6 @@
-
 function Bag(list)
     local bag = {}
-    for i, e in ipairs(list) do
-        bag[e] = (bag[e] or 0) + 1
-    end
+    for i, e in ipairs(list) do bag[e] = (bag[e] or 0) + 1 end
     return bag
 end
 
@@ -18,7 +15,7 @@ function remove_bag(bag, element)
     return bag
 end
 
-bag = Bag { 1, 2, 3, 4, 1, 2, 1, 2, 1, 3 }
+bag = Bag {1, 2, 3, 4, 1, 2, 1, 2, 1, 3}
 insert_bag(bag, 4)
 insert_bag(bag, 5)
 remove_bag(bag, 4)
