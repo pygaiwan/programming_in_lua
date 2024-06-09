@@ -1,8 +1,8 @@
-g1 g2
-g1 g3
-g2 g1
-g3 g2
-g3 g2
-g5 g3
-g2 g3
-g3 g5
+g1 g2 g1tog2
+g1 g3 g1tog3
+g2 g1 g2tog1
+g3 g2 g3tog2
+g3 g2 g3tog2
+g5 g3 g5tog3
+g2 g3 g2tog3
+g3 g5 g3tog5
