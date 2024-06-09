@@ -1,4 +1,4 @@
-function list_new() return { first = 0, last = 0 } end
+function list_new() return {first = 0, last = 0} end
 
 function push_first(list, value)
     local first = list.first - 1
@@ -39,7 +39,6 @@ push_first(l, 8)
 push_last(l, "a")
 push_last(l, "b")
 push_last(l, "c")
-
 
 pop_last(l)
 pop_last(l)
