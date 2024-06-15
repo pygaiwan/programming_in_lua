@@ -1,4 +1,3 @@
-
 function serialize(o)
     local t = type(o)
     if t == "number" or t == "string" or t == "boolean" or t == "nil" then
@@ -16,7 +15,6 @@ function serialize(o)
     end
 end
 
-
 local exampleTable = {
     [1] = "apple",
     [2] = "banana",
@@ -26,4 +24,4 @@ local exampleTable = {
 }
 
 -- serialize(exampleTable)
-serialize({a=12, b='lua', key='another "one"', d={moise= true, yana= true}})
+serialize({ a = 12, b = 'lua', key = 'another "one"', d = { m = true, y = true } })
