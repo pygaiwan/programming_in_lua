@@ -1,4 +1,4 @@
-function basic_serialize (o)
+function basic_serialize(o)
     return string.format("%q", o)
 end
 
@@ -24,8 +24,6 @@ function save(name, value, saved)
     end
 end
 
-
-
 local exampleTable = {
     [1] = "apple",
     [2] = "banana",
@@ -35,6 +33,5 @@ local exampleTable = {
 }
 
 -- serialize(exampleTable)
-exampleTable = {a=12, b='lua', key='another "one"', d={m= true, y= true}}
+exampleTable = { a = 12, b = 'lua', key = 'another "one"', d = { m = true, y = true } }
 save('m', exampleTable)
-
