@@ -46,7 +46,9 @@ local function max_element(node)
 end
 
 local function equal_trees(node1, node2)
-    local root = node1.value == node2.value
+    local root = false
+    if node1 and node2 then root = node1.value == node2.value end
+
     local left = root
     local right = root
     if node1.left then left = equal_trees(node1.left, node2.left) end
