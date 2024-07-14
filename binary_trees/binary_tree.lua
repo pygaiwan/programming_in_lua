@@ -56,6 +56,20 @@ local function equal_trees(node1, node2)
     return root and left and right
 end
 
+local function isomorphic_trees(node1, node2)
+    if not node1 and not node2 then
+        return true
+    elseif (node1 and not node2) or (not node1 and node2) then
+        return false
+    else
+        if node1.value ~= node2.value then return false end
+
+        local case1 = isomorphic_trees(node1.left, node2.left) and isomorphic_trees(node1.right, node2.right)
+        local case2 = isomorphic_trees(node1.left, node2.right) and isomorphic_trees(node1.right, node2.left)
+        return case1 or case2
+    end
+end
+
 
 local root = Node.new(10)
 root.left = Node.new(3)
@@ -82,6 +96,13 @@ root3.right.left = Node.new(13)
 root3.right.right = Node.new(20)
 
 
+local iso_with_root = Node.new(10)
+iso_with_root.right = Node.new(3)
+iso_with_root.left = Node.new(15)
+iso_with_root.right.left = Node.new(3)
+iso_with_root.right.right = Node.new(7)
+iso_with_root.left.left = Node.new(12)
+iso_with_root.left.right = Node.new(20)
 
 print('Value of root node: ', root.value)
 print('Size: ', size(root))
@@ -89,3 +110,7 @@ print('Depth: ', depth(root))
 print('Max element: ', max_element(root))
 print('Trees are equal: ', equal_trees(root, root2))
 print('Trees are equal: ', equal_trees(root, root3))
+
+print('Trees are isomorphic: ', isomorphic_trees(root, root2))
+print('Trees are isomorphic: ', isomorphic_trees(root, root3))
+print('Trees are isomorphic: ', isomorphic_trees(root, iso_with_root))
