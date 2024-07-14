@@ -70,6 +70,32 @@ local function isomorphic_trees(node1, node2)
     end
 end
 
+local function preorder_traversal(node, t)
+    t = t or {}
+
+    if node then
+        table.insert(t, node.value)
+        preorder_traversal(node.left, t)
+        preorder_traversal(node.right, t)
+    end
+
+    return t
+end
+
+local function postorder_traversal(node, t)
+    t = t or {}
+
+    if node then
+        postorder_traversal(node.left, t)
+        postorder_traversal(node.right, t)
+
+        table.insert(t, node.value)
+    end
+
+    return t
+end
+
+
 
 local root = Node.new(10)
 root.left = Node.new(3)
@@ -108,9 +134,11 @@ print('Value of root node: ', root.value)
 print('Size: ', size(root))
 print('Depth: ', depth(root))
 print('Max element: ', max_element(root))
-print('Trees are equal: ', equal_trees(root, root2))
-print('Trees are equal: ', equal_trees(root, root3))
+print('Trees are equal (expected true): ', equal_trees(root, root2))
+print('Trees are equal (expected false): ', equal_trees(root, root3))
 
-print('Trees are isomorphic: ', isomorphic_trees(root, root2))
-print('Trees are isomorphic: ', isomorphic_trees(root, root3))
-print('Trees are isomorphic: ', isomorphic_trees(root, iso_with_root))
+print('Trees are isomorphic (expected true): ', isomorphic_trees(root, root2))
+print('Trees are isomorphic (expected false): ', isomorphic_trees(root, root3))
+print('Trees are isomorphic (expected true): ', isomorphic_trees(root, iso_with_root))
+print('Preorder Traversal order: ', table.concat(preorder_traversal(root, {}), ', '))
+print('Postorder Traversal order: ', table.concat(postorder_traversal(root, {}), ', '))
