@@ -39,7 +39,6 @@ local function max_element(node)
     if node.left then max_left = max_element(node.left) end
     if node.right then max_right = max_element(node.right) end
 
-
     local max_node = (max_left > max_right) and max_left or max_right
     max = (max_node > max) and max_node or max
     return max
@@ -64,8 +63,10 @@ local function isomorphic_trees(node1, node2)
     else
         if node1.value ~= node2.value then return false end
 
-        local case1 = isomorphic_trees(node1.left, node2.left) and isomorphic_trees(node1.right, node2.right)
-        local case2 = isomorphic_trees(node1.left, node2.right) and isomorphic_trees(node1.right, node2.left)
+        local case1 = isomorphic_trees(node1.left, node2.left) and
+            isomorphic_trees(node1.right, node2.right)
+        local case2 = isomorphic_trees(node1.left, node2.right) and
+            isomorphic_trees(node1.right, node2.left)
         return case1 or case2
     end
 end
@@ -95,10 +96,32 @@ local function postorder_traversal(node, t)
     return t
 end
 
+local function inorder_traversal(node, t)
+    t = t or {}
 
+    if node then
+        inorder_traversal(node.left, t)
+        table.insert(t, node.value)
+        inorder_traversal(node.right, t)
+    end
+    return t
+end
 
+local function print_root_leaf_paths(node, path)
+    if not node then return end
+    path = path or {}
+    table.insert(path, node.value)
+
+    if not (node.left or node.right) then
+        print("\tPath: ", table.concat(path, " "))
+    else
+        print_root_leaf_paths(node.left, path)
+        print_root_leaf_paths(node.right, path)
+    end
+    table.remove(path)
+end
 local root = Node.new(10)
-root.left = Node.new(3)
+root.left = Node.new(5)
 root.right = Node.new(15)
 root.left.left = Node.new(3)
 root.left.right = Node.new(7)
@@ -121,7 +144,6 @@ root3.left.right = Node.new(7)
 root3.right.left = Node.new(13)
 root3.right.right = Node.new(20)
 
-
 local iso_with_root = Node.new(10)
 iso_with_root.right = Node.new(3)
 iso_with_root.left = Node.new(15)
@@ -142,3 +164,6 @@ print('Trees are isomorphic (expected false): ', isomorphic_trees(root, root3))
 print('Trees are isomorphic (expected true): ', isomorphic_trees(root, iso_with_root))
 print('Preorder Traversal order: ', table.concat(preorder_traversal(root, {}), ', '))
 print('Postorder Traversal order: ', table.concat(postorder_traversal(root, {}), ', '))
+print('Inorder Traversal order: ', table.concat(inorder_traversal(root, {}), ', '))
+print('All possible paths from root to leaves:')
+print_root_leaf_paths(root, {})
